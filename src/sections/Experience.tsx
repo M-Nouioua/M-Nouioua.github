@@ -46,7 +46,6 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
       },
       { threshold: 0.15 }
     )
-
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
@@ -86,20 +85,21 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
 export default function Experience() {
   const sectionRef = useRef<HTMLElement>(null)
   const [headerVisible, setHeaderVisible] = useState(false)
+  const [imgVisible, setImgVisible] = useState(false)
+  const imgRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setHeaderVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
+    const obs1 = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setHeaderVisible(true); obs1.unobserve(entry.target) } },
       { threshold: 0.15 }
     )
-
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
+    const obs2 = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setImgVisible(true); obs2.unobserve(entry.target) } },
+      { threshold: 0.1 }
+    )
+    if (sectionRef.current) obs1.observe(sectionRef.current)
+    if (imgRef.current) obs2.observe(imgRef.current)
+    return () => { obs1.disconnect(); obs2.disconnect() }
   }, [])
 
   return (
@@ -113,6 +113,8 @@ export default function Experience() {
       <FloatingIcosahedron size={1.5} color="#5A8A9A" opacity={0.06} speed={0.003} left="2%" top="70%" />
 
       <div className="mx-auto relative" style={{ maxWidth: 1200, zIndex: 1 }}>
+
+        {/* Header */}
         <div
           style={{
             opacity: headerVisible ? 1 : 0,
@@ -126,10 +128,79 @@ export default function Experience() {
           </h2>
         </div>
 
-        <div className="mt-12">
-          {timelineData.map((item, index) => (
-            <TimelineItemComponent key={index} item={item} index={index} />
-          ))}
+        {/* Two-column: timeline left, image right */}
+        <div className="flex flex-col md:flex-row gap-12 mt-12 items-start">
+
+          {/* Timeline */}
+          <div className="flex-1 min-w-0">
+            {timelineData.map((item, index) => (
+              <TimelineItemComponent key={index} item={item} index={index} />
+            ))}
+          </div>
+
+          {/* Walking image — sticky on desktop */}
+          <div
+            ref={imgRef}
+            className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-end"
+            style={{
+              opacity: imgVisible ? 1 : 0,
+              transform: imgVisible ? 'translateY(0)' : 'translateY(40px)',
+              transition: 'opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s',
+            }}
+          >
+            <div
+              className="relative md:sticky"
+              style={{ top: '8rem' }}
+            >
+              {/* Decorative frame behind */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  border: '1px solid rgba(196, 149, 106, 0.15)',
+                  borderRadius: 12,
+                  transform: 'rotate(3deg) translate(-14px, 14px)',
+                  zIndex: 0,
+                }}
+              />
+              {/* Gold accent line left */}
+              <div
+                style={{
+                  position: 'absolute',
+                  left: -20,
+                  top: '15%',
+                  width: 2,
+                  height: '70%',
+                  background: 'linear-gradient(to bottom, transparent, #C4956A, transparent)',
+                  borderRadius: 2,
+                  zIndex: 2,
+                }}
+              />
+              <img
+                src={`${import.meta.env.BASE_URL}assets/walking.png`}
+                alt="Mourad Nouioua"
+                style={{
+                  width: 300,
+                  maxWidth: '100%',
+                  borderRadius: 12,
+                  border: '1px solid #222222',
+                  boxShadow: '0 24px 64px rgba(0,0,0,0.6)',
+                  display: 'block',
+                  position: 'relative',
+                  zIndex: 1,
+                  objectFit: 'cover',
+                }}
+              />
+              {/* Caption */}
+              <p
+                className="font-mono text-center mt-3"
+                style={{ fontSize: '0.6rem', color: '#555555', letterSpacing: '0.15em', textTransform: 'uppercase' }}
+              >
+                Al-Khobar · KFUPM · 2024–Present
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
