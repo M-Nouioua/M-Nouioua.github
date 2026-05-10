@@ -103,7 +103,7 @@ export default function About() {
               }}
             />
             <img
-              src="/assets/portrait.png"
+              src={`${import.meta.env.BASE_URL}assets/portrait.png`}
               alt="Dr. Nouioua Mourad"
               className="relative"
               style={{
