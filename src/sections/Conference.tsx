@@ -30,17 +30,14 @@ export default function Conference() {
             marginBottom: '3.5rem',
           }}
         >
-          <span
-            className="font-mono text-xs uppercase"
-            style={{ color: '#C4956A', letterSpacing: '0.2em' }}
-          >
-            Research Outreach
+          <span className="font-mono text-xs uppercase" style={{ color: '#C4956A', letterSpacing: '0.2em' }}>
+            Knowledge Transfer
           </span>
           <h2
             className="font-heading mt-3"
             style={{ fontSize: 'clamp(2rem,3.5vw,2.8rem)', color: '#F0EFEA', fontWeight: 300, lineHeight: 1.15 }}
           >
-            Conferences & Presentations
+            Workshops, Lectures & Training
           </h2>
         </div>
 
@@ -61,7 +58,7 @@ export default function Conference() {
           >
             <img
               src="/assets/presenting.png"
-              alt="Dr. Mourad Nouioua presenting at conference"
+              alt="Dr. Mourad Nouioua delivering a lecture"
               style={{
                 width: '100%',
                 height: '100%',
@@ -71,7 +68,6 @@ export default function Conference() {
                 filter: 'brightness(0.88) contrast(1.05)',
               }}
             />
-            {/* Subtle gradient overlay */}
             <div style={{
               position: 'absolute', inset: 0,
               background: 'linear-gradient(to right, transparent 60%, #08080A)',
@@ -83,7 +79,7 @@ export default function Conference() {
           <div
             style={{
               flex: 1,
-              padding: '3rem 3rem',
+              padding: '3rem',
               backgroundColor: '#0D0D0F',
               display: 'flex',
               flexDirection: 'column',
@@ -98,27 +94,25 @@ export default function Conference() {
             <div style={{ borderLeft: '2px solid #C4956A', paddingLeft: '1.25rem' }}>
               <p
                 className="font-heading"
-                style={{ fontSize: 'clamp(1.1rem,2vw,1.4rem)', color: '#F0EFEA', fontWeight: 300, lineHeight: 1.6, fontStyle: 'italic' }}
+                style={{ fontSize: 'clamp(1.1rem,2vw,1.35rem)', color: '#F0EFEA', fontWeight: 300, lineHeight: 1.65, fontStyle: 'italic' }}
               >
-                "Translating complex vibration diagnostics into practical, deployable intelligence for industry."
+                "Sharing knowledge and building practical skills — from university lectures to hands-on industrial training sessions."
               </p>
             </div>
 
-            {/* Context text */}
-            <p
-              className="font-body"
-              style={{ fontSize: '0.9rem', color: '#8A8A90', lineHeight: 1.8 }}
-            >
-              Actively engaged in disseminating research through international conferences and academic workshops,
-              bridging the gap between laboratory findings and real-world manufacturing applications.
+            {/* Context */}
+            <p className="font-body" style={{ fontSize: '0.9rem', color: '#8A8A90', lineHeight: 1.8 }}>
+              Committed to academic teaching and professional development through structured lectures,
+              technical workshops, and targeted training programs that translate research into
+              actionable engineering practices.
             </p>
 
             {/* Highlights */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               {[
-                { icon: '◈', text: 'International conference presentations on predictive maintenance & AI diagnostics' },
-                { icon: '◈', text: 'Research dissemination across Europe, Middle East & North Africa' },
-                { icon: '◈', text: 'Collaborative workshops with industry partners on IIoT & smart manufacturing' },
+                { icon: '◈', text: 'University lectures on mechanical engineering, vibration analysis & condition monitoring' },
+                { icon: '◈', text: 'Technical workshops on signal processing, machine learning tools & IIoT integration' },
+                { icon: '◈', text: 'Industrial training sessions on predictive maintenance strategies & diagnostic instrumentation' },
               ].map((item, i) => (
                 <div
                   key={i}
@@ -135,8 +129,8 @@ export default function Conference() {
               ))}
             </div>
 
-            {/* Links row */}
-            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', paddingTop: '0.5rem', borderTop: '1px solid #1E1E22', marginTop: '0.25rem' }}>
+            {/* Links */}
+            <div style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', paddingTop: '0.75rem', borderTop: '1px solid #1E1E22' }}>
               <a
                 href="https://scholar.google.com/citations?user=tEKyL0UAAAAJ"
                 target="_blank" rel="noopener noreferrer"
@@ -148,7 +142,7 @@ export default function Conference() {
               <a
                 href="https://pure.kfupm.edu.sa/en/persons/mourad-nouioua/"
                 target="_blank" rel="noopener noreferrer"
-                className="font-mono text-xs transition-colors duration-300 hover:text-[#D4AA7D]"
+                className="font-mono text-xs transition-colors duration-300 hover:text-[#8A8A90]"
                 style={{ color: '#505058', textDecoration: 'none', letterSpacing: '0.08em' }}
               >
                 KFUPM Profile →
