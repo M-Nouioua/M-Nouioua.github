@@ -177,7 +177,7 @@ export default function Experience() {
                 }}
               />
               <img
-                src={`${import.meta.env.BASE_URL}assets/walking.png`}
+                src={'/assets/walking.png'}
                 alt="Mourad Nouioua"
                 style={{
                   width: 300,
